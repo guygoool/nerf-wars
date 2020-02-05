@@ -25,22 +25,19 @@ function App() {
   });
   const [gameStarted, setGameStarted] = useState(false);
 
-  // useEffect(() => {
-  //   const game = GetGame();
-
-  //   setGame({
-  //     gameId: "123" /*gameResponse.gameId */,
-  //     gameStartTime: new Date().setMinutes(5) /*gameResponse.gameStartDate */
-  //   });
-  // }, [])
+  useEffect(() => {
+    console.log("rendering..");
+  }, []);
 
   const generateGame = async () => {
     const gameResponse = await GenerateGame();
 
     if (gameResponse && gameResponse.gameId) {
-      setGame({
+      console.log("setting game", gameResponse.gameId);
+      await setGame({
         gameId: gameResponse.gameId
       });
+      console.log("game updated", game);
       setGameStarted(true);
       startGetGame();
     }
